@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../../favicon.ico">
+
+<title>清茗・阅读分类</title>
+
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/offcanvas.css" rel="stylesheet">
+<style type="text/css">
+    	body{
+			background:url(img/3.jpg);
+    		font-family:"仿宋";
+    		font-size: 15px
+    	}
+    	.旋律{
+			float: right;
+		}
+	
+		
+    </style>
+</head>
+
+<body>
+	<nav class="navbar navbar-fixed-top navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="Reading.html">清茗・阅读</a>
+				<a class="navbar-brand" href="login.jsp">登录</a>
+				<a class="navbar-brand" href="register.jsp" float="right">注册</a>
+				<div class="旋律">
+			<audio autoplay="autoplay" src="song/DJ OKAWARI - Luv Letter (情书).mp3" controls="controls">您的浏览器不支持audio标签</audio>
+			
+				    </div>
+				    <script>
+				    	var count=0;
+				    	var totalTime=5;
+				    	var perSe=Math.floor(300/totalTime);
+				    	var t;
+				    	function show(){
+				    		//将播放按钮更换为暂停按钮
+				    		document.getElementById("btn").src="img/icon_pause.gif";
+				    		changePress();
+				    	}
+				    	function changePress(){
+				    		
+				    		count=count+(perSe/10);
+				    		document.getElementById("PressBar").style.width=count+"px";
+				    		if(count<300){
+				                t=setTimeout("show()",100);
+				            }else{
+				          	document.getElementById("PressBar").style.width="0px";
+				          	document.getElementById("btn").src="img/icon_play.gif";
+				          	count=0;
+				            }
+				    	}
+				  
+				    </script>
+					</div>
+			</div>
+		</div>
+		<!-- /.container -->
+	</nav>
+	<!-- /.navbar -->
+
+	<div class="container">
+
+		<div>
+			<h2>
+				<p>文章类型：<span id="categoryName"></span></p>
+				</h2>
+
+		</div>
+		
+		<hr style="border:1px solid #3993dc52">
+		
+		<div class="row" id="sentenceList">
+		</div>
+	</div>
+	<!--/.container-->
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="js/jquery-3.4.1.js"></script>
+	<script>
+		window.jQuery
+				|| document
+						.write('<script src="js/vendor/jquery.min.js"><\/script>')
+	</script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/offcanvas.js"></script>
+	<script src="js/getParameter.js"></script>
+</body>
+
+<script type="text/javascript">
+
+	$(function(){
+		
+		var category = getParameter("category");
+		//解码
+		category = decodeURI(category);
+		//console.log(category);
+		
+		$("#categoryName").html(category);
+		
+		$.get("QueryCategoryList",{category:category},function(result){
+			//console.log(result);
+			var sentenceHtml="";
+			$(result).each(function(index,element){
+				var titleAndAuth = element.title +"(" + element.category +")"+"<br>"
+				+element.content;
+				console.log(titleAndAuth);
+				sentenceHtml += "<div class='col col-md-9' style='border:1px solid pink;'>"+
+				'<a href="Read_detail.html?id='+element.id+'">'+titleAndAuth+'</a></div>';
+			})
+			$("#sentenceList").html(sentenceHtml);
+			
+		},"json")
+		
+	})
+	
+	
+
+</script>
+
+</html>

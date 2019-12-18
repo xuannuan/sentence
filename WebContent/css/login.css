@@ -1,0 +1,117 @@
+<%@ page language="java"  pageEncoding="utf-8"%>
+/* 重置所有元素的内外边框 */
+*{
+	margin:0;
+	padding:0;
+}
+/* shift+tab向前缩进 */
+body{
+	background-image:url(../img/芭蕾.png);
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	background-position:center;
+	background-size:100%;
+}
+
+.login{
+	/* 定位 */
+	position:absolute;
+	top:50%;
+	left:50%;
+	/* margin-left:-225px;
+	margin-top:-150px; */
+	margin:-150px 0 0 -225px;/*设置外边框*/
+	width:450px;
+	height:300px;
+	background:#fefade;
+	box-shadow: 0 0 30px rgba(0,0,0,0.1);/*盒子阴影 */
+}
+
+.login-title{
+	height: 55px;
+	line-height: 55px;
+	text-align: center; /*文本居中*/
+	border-bottom: 1px solid #eca9f3;
+}
+
+.login-title>h2{
+	display:inline-block;
+	height:40px;
+	font-size:18px; /*字体大小*/
+	font-weight: 100;/*设置字体粗细程度*/
+	border-bottom:5px  solid #eca9f3;
+}
+/* 登录框表单登录元素 */
+.login-form{
+	padding:20px 0; /*设置元素内边距*/
+	/* text-align:center; */
+	box-sizing: border-box;/*固定盒子大小*/
+}
+
+.login-form>form{
+	display: inline-block;
+}
+.login-form>form{
+	display: inline-block;
+	margin-left: 60px;
+	width: 330px;
+}
+.input-group{
+	margin-top: 20px;
+	width: 328px;
+	height: 33px;
+	border:1px solid #eca9f3;
+	border-radius:5px;/*设置圆角边框边境*/
+}
+.login-icon{
+	float:left;
+	width:33px;
+	height:33px;
+	line-height: 33px !important;
+	text-align:center;
+	color:#d893ec;
+	
+}
+.input-txt{
+	width:280px;
+	height:30px;
+	border:0;/*去掉边框*/
+	outline:none;/*去除浏览器自带的外边框（聚焦）*/
+}
+/*伪对象选择器，设置占位符样式*/
+::placeholder{
+	color: #d893ec;
+}
+/*选中所有a元素*/
+a{
+	text-decoration: none;/*去掉文本下划线*/
+	color: #ff8cff;
+}
+.remember{
+	height:50px;
+	line-height:50px;
+	/* text-align: right; *//*居右边*/
+}
+	
+.remember-txt{
+	font-size: 12px;
+	color: #ffbfff;
+}
+/* 按钮区域样式 */
+.btn-box{
+	height: 30px;
+	text-align: right;
+}
+.btn-login{
+	width:120px;
+	height:30px;
+	border:0;
+	color:#400040;
+	background:#fec2fa;
+	border-radius:5px;
+	cursor:pointer;/* 设置鼠标指针样式 */
+}
+/* 伪类选择器 */
+.btn-login:hover{
+	background: #ffffff;
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../../favicon.ico">
+
+<title>清茗・阅读美文欣赏</title>
+
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/offcanvas.css" rel="stylesheet">
+<style type="text/css">
+    	body{
+			background:url(img/1.jpg);
+    		font-family:"仿宋";
+    		font-size: 15px
+    	}
+    	.旋律{
+			float: right;
+		}
+		.list-group{
+			background: lightcyan;
+		}
+	
+	
+		
+    </style>
+</head>
+
+<body>
+	<nav class="navbar navbar-fixed-top navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="Reading.html">清茗・阅读</a>
+				<a class="navbar-brand" href="login.jsp" >登录</a>
+				<a class="navbar-brand" href="register.jsp" float="right">注册</a>
+				<div class="旋律">
+			<audio autoplay="autoplay" src="song/三輪学 (Manack) - -記憶- (ヨスガノソラ メインテーマ).mp3" controls="controls">您的浏览器不支持audio标签</audio>
+			
+				    </div>
+				    <script>
+				    	var count=0;
+				    	var totalTime=5;
+				    	var perSe=Math.floor(300/totalTime);
+				    	var t;
+				    	function show(){
+				    		//将播放按钮更换为暂停按钮
+				    		document.getElementById("btn").src="img/icon_pause.gif";
+				    		changePress();
+				    	}
+				    	function changePress(){
+				    		
+				    		count=count+(perSe/10);
+				    		document.getElementById("PressBar").style.width=count+"px";
+				    		if(count<300){
+				                t=setTimeout("show()",100);
+				            }else{
+				          	document.getElementById("PressBar").style.width="0px";
+				          	document.getElementById("btn").src="img/icon_play.gif";
+				          	count=0;
+				            }
+				    	}
+				  
+				    </script>
+					</div>
+			
+			</div>
+		</div>
+		<!-- /.container -->
+	</nav>
+	<!-- /.navbar -->
+
+	<div class="container text-center">
+
+		<!--文章的内容详情-->
+		<div class="row">
+			<h2 id="title"></h2>
+			<small id="category"></small>
+			
+			<div id="beauty"></div>
+		</div>
+
+		<footer>
+        	<a href="Reading.html">首页</a>
+        	| <a href="http://localhost:8080/Sentence/Read_list.html?category=爱情文章">爱情文章</a> 
+        	| <a href="http://localhost:8080/Sentence/Read_list.html?category=亲情文章">亲情文章</a> 
+        	| <a href="http://localhost:8080/Sentence/Read_list.html?category=友情文章">友情文章</a>  
+			| <a href="http://localhost:8080/Sentence/Read_list.html?category=生活随笔">生活随笔</a> 
+			| <a href="http://localhost:8080/Sentence/Read_list.html?category=校园文章">校园文章</a>  
+			| <a href="http://localhost:8080/Sentence/Read_list.html?category=人生哲理">人生哲理</a>
+			| <a href="http://localhost:8080/Sentence/Read_list.html?category=励志文章">励志文章</a> 
+			| <a href="http://localhost:8080/Sentence/Read_list.html?category=经典文章">经典文章</a>  
+			| <a href="http://localhost:8080/Sentence/Read_list.html?category=心情日记">心情日记</a>
+			
+			
+      	</footer>
+
+	</div>
+	<!--/.container-->
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="js/jquery-3.4.1.js"></script>
+	<script>
+		window.jQuery
+				|| document
+						.write('<script src="js/vendor/jquery.min.js"><\/script>')
+	</script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/offcanvas.js"></script>
+	<script src="js/getParameter.js"></script>
+</body>
+
+<script type="text/javascript">
+
+	$(function(){
+		var id = getParameter("id");
+		//console.log(id);
+		$.get("QuerysentenceById",{id:id},function(result){
+			console.log(result);
+			
+			var title = result.title;
+			var category = result.category;
+			var content = result.content;
+			var beauty=result.beauty;
+			
+			var cs = content.split("。");
+			
+			var contentHtml = "";
+			$(cs).each(function(index,element){
+				contentHtml +="<p>"+element+"</p><br>";
+			})
+			
+			$("#title").html(title);
+			$("#category ").html(category);
+			$("#content").html(contentHtml);
+			$("#beauty").html(beauty);
+		})
+		
+	})
+
+
+</script>
+
+
+
+
+
+</html>
